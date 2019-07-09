@@ -55,33 +55,29 @@ static void convertSeed6(std::vector<CAddress>& vSeedsOut, const SeedSpec6* data
 // + Contains no strange transactions
 static Checkpoints::MapCheckpoints mapCheckpoints =
     boost::assign::map_list_of
-    (0, uint256("0x00000a15f1dd0b452c85b89d7e8a2968205e19550b1c2f12909367a04afc2855"))
-    (33934, uint256("0xcf0c724c38db98886649d62c1f5d8f5aa2653cb2d4566cde84e7c80fa33ee2dd"))
-    (46310, uint256("0x8162de462ce46707a0f933dec88ec37be6e1220cd4a662f24ab4ffc7c2bdb886"));
-
+    (0, uint256("cb478f2a2e8f911c09dbd5c088e92ccfff918c9eab5632433b5388012fff611d")); //!< Network split here
 static const Checkpoints::CCheckpointData data = {
     &mapCheckpoints,
-    1530003550, // * UNIX timestamp of last checkpoint block
-    99381,      // * total number of transactions between genesis and last checkpoint
+    1562155200, // * UNIX timestamp of last checkpoint block
+    400,    // * total number of transactions between genesis and last checkpoint
                 //   (the tx=... number in the SetBestChain debug.log lines)
-    5200        // * estimated number of transactions per day after checkpoint
+    200        // * estimated number of transactions per day after checkpoint
 };
 
 static Checkpoints::MapCheckpoints mapCheckpointsTestnet =
     boost::assign::map_list_of
-    (0, uint256("0x000008e4c24baa9a3503e6dc2f3b459843441a0d56677b1e4bd0b9a381ca987f"));
+    (0, uint256("0x001"));
 static const Checkpoints::CCheckpointData dataTestnet = {
     &mapCheckpointsTestnet,
-    1540587600,
-    0,
+    1562155201,
+    100,
     250};
 
 static Checkpoints::MapCheckpoints mapCheckpointsRegtest =
-    boost::assign::map_list_of
-    (0, uint256("0x7efc7852063bf1df9faa80bcc5a2572a3be0e975d4c35fc7ba82b16b1693052d"));
+    boost::assign::map_list_of(0, uint256("0x001"));
 static const Checkpoints::CCheckpointData dataRegtest = {
     &mapCheckpointsRegtest,
-    1527217410,
+    1562155202,
     0,
     100};
 
@@ -115,11 +111,11 @@ public:
          * The characters are rarely used upper ASCII, not valid as UTF-8, and produce
          * a large 4-byte int at any alignment.
          */
-        pchMessageStart[0] = 0xd2;
-        pchMessageStart[1] = 0xc3;
-        pchMessageStart[2] = 0x15;
-        pchMessageStart[3] = 0x54;
-        vAlertPubKey = ParseHex("98306db20be5c53b93678e2e41c9def7af38197280c65e813f682adf2ed501ac186022562dbdf2ce3204d07432660fb61ecad8e78b6b8d39c568fb892db8ecb736");
+        pchMessageStart[0] = 0xe9;
+        pchMessageStart[1] = 0xc4;
+        pchMessageStart[2] = 0xc4;
+        pchMessageStart[3] = 0xfd;
+        vAlertPubKey = ParseHex("046f9377ce4a132dc5ed4b1f75d0a414309e12301a9e09945ccab045bf0b355c128e89c5b64d84177cdfac3793a0bb700ca035e236b1867dd76ddfb89bae94e2b8");
         nDefaultPort = 36001;
         bnProofOfWorkLimit = ~uint256(0) >> 20; // GALI starting difficulty is 1 / 2^12
         nSubsidyHalvingInterval = 210000;
@@ -155,27 +151,27 @@ public:
          *     CTxOut(nValue=50.00000000, scriptPubKey=0xA9037BAC7050C479B121CF)
          *   vMerkleTree: e0028e
          */
-        const char* pszTimestamp = "Galilel Coin Start @ Friday, 25. May 2018 04:00:00 GMT.";
+        const char* pszTimestamp = "RedSpace Coin and Games 3.07.2019";
         CMutableTransaction txNew;
         txNew.vin.resize(1);
         txNew.vout.resize(1);
         txNew.vin[0].scriptSig = CScript() << 486604799 << CScriptNum(4) << vector<unsigned char>((const unsigned char*)pszTimestamp, (const unsigned char*)pszTimestamp + strlen(pszTimestamp));
         txNew.vout[0].nValue = 0 * COIN;
-        txNew.vout[0].scriptPubKey = CScript() << ParseHex("87268afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5f") << OP_CHECKSIG;
+        txNew.vout[0].scriptPubKey = CScript() << ParseHex("0428df210a2159ca5b86889ad4d2043c029b7e61deca3628382e1eae46efdda6b604b9f0690038d35b16d98ab75e29bf2ac765d3272df9216df660ad8aba9ac21a") << OP_CHECKSIG;
         genesis.vtx.push_back(txNew);
         genesis.hashPrevBlock = 0;
         genesis.hashMerkleRoot = genesis.BuildMerkleTree();
         genesis.nVersion = 1;
-        genesis.nTime = 1527217408;
+        genesis.nTime = 1562155200;
         genesis.nBits = 0x1e0ffff0;
-        genesis.nNonce = 121699;
+        genesis.nNonce = 290678;;
 
         hashGenesisBlock = genesis.GetHash();
-        assert(hashGenesisBlock == uint256("0x00000a15f1dd0b452c85b89d7e8a2968205e19550b1c2f12909367a04afc2855"));
-        assert(genesis.hashMerkleRoot == uint256("0x1dd81cdda448e9346a94f82e0d6c9fa7a876b59124da4dc49b66531d3ef11822"));
+        assert(hashGenesisBlock == uint256("cb478f2a2e8f911c09dbd5c088e92ccfff918c9eab5632433b5388012fff611d"));
+        assert(genesis.hashMerkleRoot == uint256("ce52f8fab4d04679297def98bb0b845ba79818be2c0ecfe271ca0ddb10e18cf2"));;
 
         vSeeds.push_back(CDNSSeedData("80.240.17.77", "80.240.17.77")); // 1st DNS Seeder from mbroemme
-        vSeeds.push_back(CDNSSeedData("45.77.170.54", "45.77.170.54")); // 2nd DNS Seeder from mbroemme
+        vSeeds.push_back(CDNSSeedData("45.76.151.173", "45.76.151.173")); // 2nd DNS Seeder from mbroemme
         //vSeeds.push_back(CDNSSeedData("seed3.galilel.org", "seed3.galilel.org")); // 3rd DNS Seeder from mbroemme
         //vSeeds.push_back(CDNSSeedData("seed4.galilel.org", "seed4.galilel.org")); // 4th DNS Seeder from mbroemme
         //vSeeds.push_back(CDNSSeedData("seed5.galilel.org", "seed5.galilel.org")); // 5th DNS Seeder from gridscale.io
@@ -198,13 +194,13 @@ public:
         fDefaultConsistencyChecks = false;
         fRequireStandard = true;
         fMineBlocksOnDemand = false;
-        fSkipProofOfWorkCheck = false;
+        fSkipProofOfWorkCheck = true;
         fTestnetToBeDeprecatedFieldRPC = false;
         fHeadersFirstSyncingActive = false;
 
         nPoolMaxTransactions = 3;
-        strSporkKey = "048d5201291e3655fbd86eeeadc1d5da27b2e69d072e92084b08a83412334894ca2aefb3ac48cfec375169c2b9da19b5db34eec7dd60bc6e22bfa0901d1941ed12";
-        strSporkKeyOld = "0478c3e932fbe183b2f665de937866cb1cfc5ed4b0bf733b72286f265ffc03ff52dfd669fbb3f77d630e5393da65c721a9a891d2c4c6aa515dfd25ffe545582357";
+        strSporkKey = "0422f1a9df4dafeb4142eb5a2ea3aa6d7928f91d943beb383762c3183fd3822d8fc09915a36b289816ee2695ca2dfccd10adbb1132aef53b98730c2a54ff307352";
+        strSporkKeyOld = "0422f1a9df4dafeb4142eb5a2ea3aa6d7928f91d943beb383762c3183fd3822d8fc09915a36b289816ee2695ca2dfccd10adbb1132aef53b98730c2a54ff307352";
         strObfuscationPoolDummyAddress = "UZtNU63X1ct8bJULwCPZrh4oF8AE62CVJ1";
         nStartMasternodePayments = 1525192183; // Tue May  1 18:29:43 CEST 2018
         nRequiredMasternodeCollateral = 15000 * COIN; // Masternode collateral amount
@@ -250,7 +246,7 @@ public:
         pchMessageStart[1] = 0x64;
         pchMessageStart[2] = 0x54;
         pchMessageStart[3] = 0x65;
-        vAlertPubKey = ParseHex("04678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5f");
+        vAlertPubKey = ParseHex("000010e83b2703ccf322f7dbd62dd5855ac7c10bd055814ce121ba32607d573b8810c02c0582aed05b4deb9c4b77b26d92428c61256cd42774babea0a073b2ed0c9");
         nDefaultPort = 56123;
         nEnforceBlockUpgradeMajority = 51;
         nRejectBlockOutdatedMajority = 75;
@@ -276,19 +272,13 @@ public:
         genesis.nNonce = 1745260;
 
         hashGenesisBlock = genesis.GetHash();
-        assert(hashGenesisBlock == uint256("0x000008e4c24baa9a3503e6dc2f3b459843441a0d56677b1e4bd0b9a381ca987f"));
+        assert(hashGenesisBlock == uint256("0x001"));
 
         vFixedSeeds.clear();
         vSeeds.clear();
 
         vSeeds.push_back(CDNSSeedData("seed1.testnet.galilel.org", "seed1.testnet.galilel.org"));
         vSeeds.push_back(CDNSSeedData("seed2.testnet.galilel.org", "seed2.testnet.galilel.org"));
-        vSeeds.push_back(CDNSSeedData("seed3.testnet.galilel.org", "seed3.testnet.galilel.org"));
-        vSeeds.push_back(CDNSSeedData("seed4.testnet.galilel.org", "seed4.testnet.galilel.org"));
-        vSeeds.push_back(CDNSSeedData("seed5.testnet.galilel.org", "seed5.testnet.galilel.org"));
-        vSeeds.push_back(CDNSSeedData("seed6.testnet.galilel.org", "seed6.testnet.galilel.org"));
-        vSeeds.push_back(CDNSSeedData("seed7.testnet.galilel.org", "seed7.testnet.galilel.org"));
-        vSeeds.push_back(CDNSSeedData("seed8.testnet.galilel.org", "seed8.testnet.galilel.org"));
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 83);  // Testnet galilel addresses start with 'a'
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 18);  // Testnet galilel script addresses start with '8' or '9'
