@@ -130,12 +130,12 @@ public:
         nMinerThreads = 0;
         nTargetTimespan = 1 * 60; // GALI: 1 day
         nTargetSpacing = 1 * 60;  // GALI: 1 minute
-        nMaturity = 99;
+        nMaturity = 19;
         nMasternodeCountDrift = 20;
         nMaxMoneyOut = 25000000 * COIN;
 
         /** Height or Time Based Activations **/
-        nLastPOWBlock = 1500;
+        nLastPOWBlock = 150;
         nModifierUpdateBlock = 1;
         nZerocoinStartTime = 1544216400;		/* Fri Dec  7 21:00:00 UTC 2018 */
         nBlockFirstGoodChecksum = 285471;		/* First block with valid Zerocoin checksums */
@@ -174,14 +174,14 @@ public:
         assert(hashGenesisBlock == uint256("0x00000a15f1dd0b452c85b89d7e8a2968205e19550b1c2f12909367a04afc2855"));
         assert(genesis.hashMerkleRoot == uint256("0x1dd81cdda448e9346a94f82e0d6c9fa7a876b59124da4dc49b66531d3ef11822"));
 
-        vSeeds.push_back(CDNSSeedData("seed1.galilel.org", "seed1.galilel.org")); // 1st DNS Seeder from mbroemme
-        vSeeds.push_back(CDNSSeedData("seed2.galilel.org", "seed2.galilel.org")); // 2nd DNS Seeder from mbroemme
-        vSeeds.push_back(CDNSSeedData("seed3.galilel.org", "seed3.galilel.org")); // 3rd DNS Seeder from mbroemme
-        vSeeds.push_back(CDNSSeedData("seed4.galilel.org", "seed4.galilel.org")); // 4th DNS Seeder from mbroemme
-        vSeeds.push_back(CDNSSeedData("seed5.galilel.org", "seed5.galilel.org")); // 5th DNS Seeder from gridscale.io
-        vSeeds.push_back(CDNSSeedData("seed6.galilel.org", "seed6.galilel.org")); // 6th DNS Seeder from gridscale.io
-        vSeeds.push_back(CDNSSeedData("seed7.galilel.org", "seed7.galilel.org")); // 7th DNS Seeder from gridscale.io
-        vSeeds.push_back(CDNSSeedData("seed8.galilel.org", "seed8.galilel.org")); // 8th DNS Seeder from gridscale.io
+        vSeeds.push_back(CDNSSeedData("80.240.17.77", "80.240.17.77")); // 1st DNS Seeder from mbroemme
+        vSeeds.push_back(CDNSSeedData("45.77.170.54", "45.77.170.54")); // 2nd DNS Seeder from mbroemme
+        //vSeeds.push_back(CDNSSeedData("seed3.galilel.org", "seed3.galilel.org")); // 3rd DNS Seeder from mbroemme
+        //vSeeds.push_back(CDNSSeedData("seed4.galilel.org", "seed4.galilel.org")); // 4th DNS Seeder from mbroemme
+        //vSeeds.push_back(CDNSSeedData("seed5.galilel.org", "seed5.galilel.org")); // 5th DNS Seeder from gridscale.io
+        //vSeeds.push_back(CDNSSeedData("seed6.galilel.org", "seed6.galilel.org")); // 6th DNS Seeder from gridscale.io
+        //vSeeds.push_back(CDNSSeedData("seed7.galilel.org", "seed7.galilel.org")); // 7th DNS Seeder from gridscale.io
+        //vSeeds.push_back(CDNSSeedData("seed8.galilel.org", "seed8.galilel.org")); // 8th DNS Seeder from gridscale.io
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 68);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 16);
