@@ -1,0 +1,8 @@
+/usr/bin/galilel-cli		--	gen_context(system_u:object_r:galilel_exec_t,s0)
+/usr/sbin/galileld		--	gen_context(system_u:object_r:galilel_exec_t,s0)
+/usr/lib(64)?/galilel/galileld		--	gen_context(system_u:object_r:galilel_exec_t,s0)
+
+/etc/galilel(/.*)?		gen_context(system_u:object_r:galilel_conf_t,s0)
+/var/lib/galilel(/.*)?		gen_context(system_u:object_r:galilel_var_lib_t,s0)
+
+(/var)?/run/galileld(/.*)?   gen_context(system_u:object_r:galilel_var_run_t,s0)

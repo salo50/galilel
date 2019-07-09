@@ -1,0 +1,3 @@
+usr/local/bin/galileld usr/bin
+usr/local/bin/galilel-cli usr/bin
+debian/examples/galilel.conf etc/galilel

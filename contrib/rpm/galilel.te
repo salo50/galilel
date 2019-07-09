@@ -1,0 +1,81 @@
+policy_module(galilel, 1.100.1)
+
+########################################
+#
+# Declarations
+#
+
+type galilel_t;
+type galilel_exec_t;
+init_daemon_domain(galilel_t, galilel_exec_t)
+
+permissive galilel_t;
+
+type galilel_initrc_exec_t;
+init_script_file(galilel_initrc_exec_t)
+
+type galilel_conf_t;
+files_type(galilel_conf_t)
+
+type galilel_var_lib_t;
+files_type(galilel_var_lib_t)
+
+type galilel_var_run_t;
+files_type(galilel_var_run_t)
+
+type galilel_port_t;
+corenet_port(galilel_port_t)
+
+########################################
+#
+# galilel local policy
+#
+allow galilel_t self:process { fork };
+
+allow galilel_t self:fifo_file rw_fifo_file_perms;
+allow galilel_t self:unix_stream_socket create_stream_socket_perms;
+
+manage_dirs_pattern(galilel_t, galilel_conf_t, galilel_conf_t)
+manage_files_pattern(galilel_t, galilel_conf_t, galilel_conf_t)
+
+manage_dirs_pattern(galilel_t, galilel_var_lib_t, galilel_var_lib_t)
+manage_files_pattern(galilel_t, galilel_var_lib_t, galilel_var_lib_t)
+files_var_lib_filetrans(galilel_t, galilel_var_lib_t, { dir file })
+
+manage_dirs_pattern(galilel_t, galilel_var_run_t, galilel_var_run_t)
+manage_files_pattern(galilel_t, galilel_var_run_t, galilel_var_run_t)
+
+sysnet_dns_name_resolve(galilel_t)
+corenet_all_recvfrom_unlabeled(galilel_t)
+
+allow galilel_t self:tcp_socket create_stream_socket_perms;
+corenet_tcp_sendrecv_generic_if(galilel_t)
+corenet_tcp_sendrecv_generic_node(galilel_t)
+corenet_tcp_sendrecv_all_ports(galilel_t)
+corenet_tcp_bind_generic_node(galilel_t)
+
+gen_require(`
+    type galilel_port_t;
+')
+allow galilel_t galilel_port_t:tcp_socket name_bind;
+
+gen_require(`
+    type galilel_port_t;
+')
+allow galilel_t galilel_port_t:tcp_socket name_connect;
+
+domain_use_interactive_fds(galilel_t)
+
+files_read_etc_files(galilel_t)
+
+miscfiles_read_localization(galilel_t)
+
+sysnet_dns_name_resolve(galilel_t)
+
+allow galilel_t galilel_exec_t:file execute_no_trans;
+allow galilel_t self:process setsched;
+corecmd_exec_ls(galilel_t)
+corenet_tcp_connect_http_port(galilel_t)
+dev_read_urand(galilel_t)
+fs_getattr_xattr_fs(galilel_t)
+kernel_read_system_state(galilel_t)

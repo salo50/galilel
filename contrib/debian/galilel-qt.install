@@ -1,0 +1,6 @@
+usr/local/bin/galilel-qt usr/bin
+share/pixmaps/galilel16.xpm usr/share/pixmaps
+share/pixmaps/galilel32.xpm usr/share/pixmaps
+share/pixmaps/galilel128.xpm usr/share/pixmaps
+debian/galilel-qt.desktop usr/share/applications
+debian/galilel-qt.protocol usr/share/kde4/services/
